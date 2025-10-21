@@ -24,7 +24,7 @@ void CreateLinkList(LinkList *head,int arr[],int n)
 	}
 }
 
-LinkList MergeLinkList(LinkList L1,LinkList L2)
+LinkList MergeList(LinkList L1,LinkList L2)
 {
 	LinkList newhead = (LinkList)malloc(sizeof(LN));
 	newhead->next = NULL;
@@ -56,7 +56,7 @@ LinkList MergeLinkList(LinkList L1,LinkList L2)
 	return newhead;
 }
 
-void PrintfLinkList(LinkList head)
+void PrintfList(LinkList head)
 {
 	LN *p = head->next;
 	while(p != NULL)
@@ -75,14 +75,14 @@ int main()
 	CreateLinkList(&L2,arr2,5);
 	
 	printf("L1:");
-	PrintfLinkList(L1);
+	PrintfList(L1);
 	
 	printf("L2:");
-	PrintfLinkList(L2);
+	PrintfList(L2);
 	
-	Merge = MergeLinkList(L1,L2);
+	Merge = MergeList(L1,L2);
 	printf("合并后为：");
-	PrintfLinkList(Merge);
+	PrintfList(Merge);
 	
 	return 0;
 }
