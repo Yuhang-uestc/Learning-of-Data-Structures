@@ -8,28 +8,43 @@ typedef struct Lnode{
 }LN;
 // LN = *LinkList
 
-void CreateLinkList(LinkList *head,int arr[],int n)
+void CreateLinkList(LinkList *head)
 {
-	*head = (LinkList)malloc(sizeof(LN));
-	(*head)->next = NULL;
-	LN *tail = *head;
+	*head = NULL;
+	LinkList newnode,tail = NULL;
+	int num;
 	
-	for(int i=0;i<n;i++)
+	printf("请输入链表元素（空格分隔，输入-1结束）：");
+	while(scanf("%d",&num) == 1)
 	{
-		LN *Newnode = (LinkList)malloc(sizeof(LN));
-		Newnode->data = arr[i];
-		Newnode->next = NULL;
-		tail->next = Newnode;
-		tail = Newnode;
+		if(num == -1)
+		    break;
+  
+		newnode = (LinkList)malloc(sizeof(LN));
+		if(newnode == NULL)
+		{
+			printf("内存分配失败！\n");
+			exit(1);
+		}
+		newnode->data = num;
+		newnode->next = NULL;
+	    if(*head == NULL)
+	    {
+		    *head = newnode;
+		    tail = newnode;
+        }
+	    else
+	    {
+		    tail->next = newnode;
+		    tail = newnode;
+	    }
 	}
 }
 
-void ReverseList(LinkList head)
+LinkList ReverseList(LinkList head)
 {
-	if(head->next == NULL || head->next->next == NULL)
-        return;
     LN *pre = NULL;
-    LN *cur = head->next;
+    LN *cur = head;
     LN *next = NULL;
     
     while(cur != NULL)
@@ -39,15 +54,15 @@ void ReverseList(LinkList head)
     	pre = cur;
     	cur = next;
 	}
-	head->next = pre;
+	return pre; 
 }
 
 void PrintfList(LinkList head)
 {
-	LN *p = head->next;
+	LN *p = head;
 	while(p != NULL)
 	{
-		printf("%d",p->data);
+		printf("%d ",p->data);
 		p = p->next;
 	}
 	printf("\n");
@@ -55,18 +70,26 @@ void PrintfList(LinkList head)
 
 int main()
 {
-	int arr[] = {1,2,3,4};
+
 	LinkList head;
 	
-	CreateLinkList(&head,arr,4);
+	CreateLinkList(&head);
 	
 	printf("原链表：");
 	PrintfList(head);
 	
-	ReverseList(head);
+	head = ReverseList(head);
 	
 	printf("逆转后：");
 	PrintfList(head);
+	
+	LinkList temp;
+	while(head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp);
+	}
 	
 	return 0; 
 }
