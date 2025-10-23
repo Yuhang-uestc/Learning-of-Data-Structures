@@ -8,27 +8,45 @@ typedef struct Lnode{
 }LN;
 // LN = *LinkList
 
-void CreateLinkList(LinkList *head,int arr[],int n)
+void CreateLinkList(LinkList *head)
 {
-	*head = (LinkList)malloc(sizeof(LN));
-	(*head)->next = NULL;
-	LN *tail = *head;
+	*head = NULL;
+	LinkList newnode,tail = NULL;
+	int num;
 	
-	for(int i=0;i<n;i++)
+	printf("请输入链表元素（空格分隔，输入-1结束）：");
+	while(scanf("%d",&num) == 1)
 	{
-		LN *Newnode = (LinkList)malloc(sizeof(LN));
-		Newnode->data = arr[i];
-		Newnode->next = NULL;
-		tail->next = Newnode;
-		tail = Newnode;
+		if(num == -1)
+		    break;
+  
+		newnode = (LinkList)malloc(sizeof(LN));
+		if(newnode == NULL)
+		{
+			printf("内存分配失败！\n");
+			exit(1);
+		}
+		newnode->data = num;
+		newnode->next = NULL;
+		
+	    if(*head == NULL)
+	    {
+		    *head = newnode;
+		    tail = newnode;
+        }
+	    else
+	    {
+		    tail->next = newnode;
+		    tail = newnode;
+	    }
 	}
 }
 
 LinkList MergeList(LinkList L1,LinkList L2)
 {
-	LinkList newhead = (LinkList)malloc(sizeof(LN));
-	newhead->next = NULL;
-	LN *p1 = L1->next, *p2 = L2->next, *tail = newhead;
+	LinkList temp_head = (LinkList)malloc(sizeof(LN));
+    temp_head->next = NULL;
+	LN *p1 = L1, *p2 = L2, *tail = temp_head;
 	
 	while(p1 != NULL && p2 != NULL)
 	{
@@ -46,19 +64,22 @@ LinkList MergeList(LinkList L1,LinkList L2)
 		{
 			tail->next = p1;
 			p1 = p1->next;
+			LinkList temp = p2;
 			p2 = p2->next;
+			free(temp);
 		}
 		tail = tail->next;
 	}
 	tail->next = (p1 != NULL) ? p1 : p2;
-	free(L1);
-	free(L2);
+	LinkList newhead = temp_head->next;
+	free(temp_head);
+	
 	return newhead;
 }
 
 void PrintfList(LinkList head)
 {
-	LN *p = head->next;
+	LN *p = head;
 	while(p != NULL)
 	{
 		printf("%d",p->data);
@@ -69,10 +90,9 @@ void PrintfList(LinkList head)
 
 int main()
 {
-	int arr1[]={1,3,5,7},arr2[]={2,3,6,7,9};
 	LinkList L1,L2,Merge;
-	CreateLinkList(&L1,arr1,4);
-	CreateLinkList(&L2,arr2,5);
+	CreateLinkList(&L1);
+	CreateLinkList(&L2);
 	
 	printf("L1:");
 	PrintfList(L1);
