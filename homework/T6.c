@@ -27,7 +27,7 @@ int Push(Stack *s,int value)
 {
 	if(IsFull(s))
 	{
-		printf("æ ˆæ»¡ï¼Œæ— æ³•å…¥æ ˆï¼\n");
+		printf("Õ»Âú£¬ÎŞ·¨ÈëÕ»£¡\n");
 		return 0;
 	}
 	s->data[++(s->top)] = value;
@@ -38,7 +38,7 @@ int Pop(Stack *s)
 {
 	if(IsEmpty(s))
 	{
-		printf("æ ˆç©ºï¼Œæ— æ³•å‡ºæ ˆï¼\n");
+		printf("Õ»¿Õ£¬ÎŞ·¨³öÕ»£¡\n");
 		return -1;
 	}
 	return s->data[(s->top)--];
@@ -57,7 +57,7 @@ void DecToOct(int dec)
 		Push(&s,rem);
 		dec = dec / 8;
 	}
-	printf("å…«è¿›åˆ¶ç»“æœï¼š");
+	printf("°Ë½øÖÆ½á¹û£º");
 	while(!IsEmpty(&s))
 	{
 		printf("%d",Pop(&s));
@@ -74,7 +74,7 @@ int OctToDec(int oct)
 		int digit = oct % 10;
 		if(digit >= 8)
 		{
-			printf("è¾“å…¥çš„ä¸æ˜¯åˆæ³•å…«è¿›åˆ¶æ•°ï¼\n");
+			printf("ÊäÈëµÄ²»ÊÇºÏ·¨°Ë½øÖÆÊı£¡\n");
 			return -1;
 		}
 		dec += digit * base;
@@ -87,22 +87,22 @@ int OctToDec(int oct)
 int main()
 {
 	int dec;
-	printf("è¯·è¾“å…¥ä¸€ä¸ªåè¿›åˆ¶æ•´æ•°ï¼š");
+	printf("ÇëÊäÈëÒ»¸öÊ®½øÖÆÕûÊı£º");
 	scanf("%d",&dec);
 	
 	DecToOct(dec);
 	
 	int oct;
-	printf("è¯·è¾“å…¥åˆšæ‰è½¬æ¢å¾—åˆ°çš„å…«è¿›åˆ¶æ•°ï¼ˆç”¨äºéªŒè¯ï¼‰ï¼š")ï¼›
+	printf("ÇëÊäÈë¸Õ²Å×ª»»µÃµ½µÄ°Ë½øÖÆÊı£¨ÓÃÓÚÑéÖ¤£©£º");
 	scanf("%d",&oct);
 	int verify_dec = OctToDec(oct);
 	if(verify_dec != -1)
 	{
-		printf("éªŒè¯ï¼šå…«è¿›åˆ¶%dè½¬åè¿›åˆ¶ä¸º%d\n",oct,verify_dec);
+		printf("ÑéÖ¤£º°Ë½øÖÆ%d×ªÊ®½øÖÆÎª%d\n",oct,verify_dec);
 		if(verify_dec == dec)
-			printf("è½¬æ¢æ­£ç¡®\n");
+			printf("×ª»»ÕıÈ·\n");
 		else
-		    printf("è½¬æ¢é”™è¯¯\n");
+		    printf("×ª»»´íÎó\n");
 		}
 		return 0;
 }
