@@ -1,8 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 #define Maxsize 100
-
 typedef struct {
 	int data[Maxsize];
 	int length;
@@ -13,7 +11,7 @@ void Remove(Seqlist *SL)
 	int i,j =0;
 	if(SL->length <= 1)
 	{
-		printf("ÔªËØ¸öÊýÐ¡ÓÚµÈÓÚ1£¬ÎÞÖØ¸´ÔªËØ£¡");
+		printf("å…ƒç´ ä¸ªæ•°å°äºŽç­‰äºŽ1ï¼Œæ— é‡å¤å…ƒç´ ï¼");
 		return; 
 	}
 	for(i=1;i<SL->length;i++)
