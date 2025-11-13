@@ -11,7 +11,7 @@ void Remove(Seqlist *SL)
 	int i,j =0;
 	if(SL->length <= 1)
 	{
-		printf("å…ƒç´ ä¸ªæ•°å°äºŽç­‰äºŽ1ï¼Œæ— é‡å¤å…ƒç´ ï¼");
+		printf("ÔªËØ¸öÊýÐ¡ÓÚµÈÓÚ1£¬ÎÞÖØ¸´ÔªËØ£¡");
 		return; 
 	}
 	for(i=1;i<SL->length;i++)

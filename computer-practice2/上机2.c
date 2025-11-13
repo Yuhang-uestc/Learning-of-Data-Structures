@@ -11,7 +11,7 @@ void InitList(LinkList *L)
 	*L = (LinkList)malloc(sizeof(Node));
 	if(*L == NULL)
 	{
-		printf("ÄÚ´æ·ÖÅäÊ§°Ü£¬Á´±í³õÊ¼»¯Ê§°Ü\n");
+		printf("å†…å­˜åˆ†é…å¤±è´¥ï¼Œé“¾è¡¨åˆå§‹åŒ–å¤±è´¥\n");
 		exit(1);
 	}
 	(*L)->next = NULL;
@@ -21,21 +21,21 @@ void CreateList(LinkList L)
 {
 	Node *p = L;
 	int n,data;
-	printf("ÇëÊäÈëÒª´´½¨µÄÁ´±íÔªËØ¸öÊı£º");
+	printf("è¯·è¾“å…¥è¦åˆ›å»ºçš„é“¾è¡¨å…ƒç´ ä¸ªæ•°ï¼š");
 	scanf("%d",&n);
 	if(n <= 0)
 	{
-		printf("ÔªËØ¸öÊı·Ç·¨");
+		printf("å…ƒç´ ä¸ªæ•°éæ³•");
 		return;
 	}
-	printf("Çë°´Ë³ĞòÊäÈë%d¸öÕûÊı£¨ÓÃ¿Õ¸ñ·Ö¸ô£©£º",n);
+	printf("è¯·æŒ‰é¡ºåºè¾“å…¥%dä¸ªæ•´æ•°(ç©ºæ ¼åˆ†éš”)",n);
 	for(int i = 0;i < n;i++)
 	{
 		scanf("%d",&data);
 		Node *newnode = (Node*)malloc(sizeof(Node));
 		if(newnode == NULL)
 		{
-			printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+			printf("å†…å­˜åˆ†é…å¤±è´¥ï¼Œåˆ›å»ºé“¾è¡¨å¤±è´¥\n");
 			exit(1);
 		}
 		newnode->data = data;
@@ -50,11 +50,11 @@ void PrintList(LinkList L)
 {
 	if(L->next == NULL)
 	{
-		printf("Á´±íÎª¿Õ\n");
+		printf("é“¾è¡¨ä¸ºç©º\n");
 		return;
 	}
 	Node *p = L->next;
-	printf("Á´±íÔªËØ£º");
+	printf("é“¾è¡¨å…ƒç´ ï¼š");
 	while(p != NULL)
 	{
 		printf("%d ",p->data);
@@ -67,7 +67,7 @@ int InsertList(LinkList L,int pos,int data)
 {
 	if(pos < 1)
 	{
-		printf("²åÈëÎ»ÖÃ·Ç·¨\n");
+		printf("æ’å…¥ä½ç½®éæ³•\n");  //posä»1å¼€å§‹ï¼Œç‰©ç†æ„ä¹‰ä¸Šçš„ä½ç½®
 		return 0;
 	}
 	Node *p = L;
@@ -88,13 +88,14 @@ int InsertList(LinkList L,int pos,int data)
 int DeleteList(LinkList L,int pos)
 {
 	if(L->next == NULL)
+	
 	{
-		printf("Á´±íÎª¿Õ\n");
+		printf("é“¾è¡¨ä¸ºç©ºï¼Œæ— æ³•åˆ é™¤\n");
 		return 0;
 	}
 	if(pos < 1)
 	{
-			printf("²åÈëÎ»ÖÃ·Ç·¨\n");
+			printf("åˆ é™¤ä½ç½®éæ³•\n");
 			return 0;
 	}
 	Node *p = L;
@@ -176,8 +177,8 @@ int main()
 	InitList(&L);
 	while(1)
 	{
-		printf("\n1.´´½¨Á´±í 2.Êä³öÁ´±í 3.²åÈëÔªËØ 4.É¾³ıÔªËØ 5.·­×ªÁ´±í 6.ÅÅĞòÁ´±í 7.É¾³ıÕû¸öÁ´±í 0.ÍË³ö\n");
-		printf("ÇëÊäÈëÑ¡Ôñ£º");
+		printf("\n1.åˆ›å»ºå•é“¾è¡¨ 2.è¾“å‡ºé“¾è¡¨å…ƒç´  3.æ’å…¥å…ƒç´  4.åˆ é™¤å…ƒç´  5.ç¿»è½¬é“¾è¡¨ 6.å†’æ³¡æ’åº 7.åˆ é™¤æ•´ä¸ªé“¾è¡¨ 0.é€€å‡ºç¨‹åº\n");
+		printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š");
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -186,14 +187,14 @@ int main()
 			        break;
 			case 2: PrintList(L);
 			        break;
-			case 3: printf("²åÈëÎ»ÖÃ£º");
+			case 3: printf("è¯·è¾“å…¥æ’å…¥ä½ç½®ï¼š");
 			        scanf("%d",&pos);
-			        printf("²åÈëÔªËØ£º");
+			        printf("è¯·è¾“å…¥æ’å…¥çš„æ•´æ•°");
 			        scanf("%d",&data);
 					InsertList(L,pos,data);
 			        PrintList(L);
 			        break;
-			case 4: printf("É¾³ıÎ»ÖÃ£º");
+			case 4: printf("è¯·è¾“å…¥åˆ é™¤ä½ç½®");
 					scanf("%d",&pos);
 			        DeleteList(L,pos);
 			        PrintList(L);
@@ -209,8 +210,10 @@ int main()
 			        break;
 			case 0: DestroyList(L);
 			        free(L);
-			        printf("ÍË³ö£¡\n");
+			        printf("ç¨‹åºé€€å‡ºæˆåŠŸ\n");
 			        return 0;
+			default:printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©(0-7)\n");
+            break;
        	}
     }
 }

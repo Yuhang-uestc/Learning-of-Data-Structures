@@ -20,30 +20,33 @@ int IsFull(Stack *s)
 {
     return s->top == MAX_SIZE - 1;
 }
+
 int Push(Stack *s,int value)
 {
 	if(IsFull(s))
 	{
-		printf("栈满！\n");
+		printf("閺嶅牊寮ч敍涔梟");
 		return 0;
 	}
 	s->data[++(s->top)] = value;
 	return 1;
 }
+
 int Pop(Stack *s)
 {
 	if(IsEmpty(s))
 	{
-		printf("栈空！\n");
+		printf("閺嶅牏鈹栭敍涔梟");
 		return -1;
 	}
 	return s->data[(s->top)--];
 }
+
 int GetTop(Stack *s)
 {
 	if(IsEmpty(s))
 	{
-		printf("栈空！\n");
+		printf("閺嶅牏鈹栭敍涔梟");
 		return -1;
 	}
 	return s->data[s->top ];
@@ -59,10 +62,12 @@ void InitQue(Que *q)
 	InitStack(&q->stack_in);
 	InitStack(&q->stack_out);
 }
+
 int EnQue(Que *q,int value)
 {
 	return Push(&q->stack_in,value);
 }
+
 int DeQue(Que *q)
 {
 	if(IsEmpty(&q->stack_out))
@@ -75,11 +80,12 @@ int DeQue(Que *q)
 	}
 	if(IsEmpty(&q->stack_out))
 	{
-		printf("队列为空，无法出队！\n");
+		printf("闂冪喎鍨稉铏光敄閿涘本妫ゅ▔鏇炲毉闂冪噦绱抃n");
 		return -1;
 	}
 	return Pop(&q->stack_out);
 }
+
 int Front(Que *q)
 {
 	if(IsEmpty(&q->stack_out))
@@ -92,7 +98,7 @@ int Front(Que *q)
 	}
 	if (IsEmpty(&q->stack_out)) 
 	{
-        printf("队列为空，无队首元素！\n");
+        printf("闂冪喎鍨稉铏光敄閿涘本妫ら梼鐔碱浕閸忓啰绀岄敍涔梟");
         return -1;
     }
     return GetTop(&q->stack_out);
@@ -106,16 +112,16 @@ int main()
 	EnQue(&q,1);
 	EnQue(&q,2);
 	EnQue(&q,3);
-	printf("队首元素：%d\n",Front(&q));
-	printf("出队元素：%d\n",DeQue(&q));
-	printf("队首元素：%d\n",Front(&q));
+	printf("闂冪喖顩婚崗鍐閿涳拷%d\n",Front(&q));
+	printf("閸戞椽妲﹂崗鍐閿涳拷%d\n",DeQue(&q));
+	printf("闂冪喖顩婚崗鍐閿涳拷%d\n",Front(&q));
 	
 	EnQue(&q, 4);
-    printf("出队元素：%d\n", DeQue(&q));
-    printf("出队元素：%d\n", DeQue(&q));
-    printf("队首元素：%d\n", Front(&q));
-    printf("出队元素：%d\n", DeQue(&q));
-    printf("出队元素：%d\n", DeQue(&q));
+    printf("閸戞椽妲﹂崗鍐閿涳拷%d\n", DeQue(&q));
+    printf("閸戞椽妲﹂崗鍐閿涳拷%d\n", DeQue(&q));
+    printf("闂冪喖顩婚崗鍐閿涳拷%d\n", Front(&q));
+    printf("閸戞椽妲﹂崗鍐閿涳拷%d\n", DeQue(&q));
+    printf("閸戞椽妲﹂崗鍐閿涳拷%d\n", DeQue(&q));
     
     return 0;
 }
